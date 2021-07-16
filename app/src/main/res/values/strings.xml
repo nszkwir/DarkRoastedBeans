@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DarkRoastedBeans</string>
+    <string name="how_does_this_work"><a href="https://google.com">How does this work</a></string>
+    <string name="main_fragment_title">Dark Roasted Beans</string>
+    <string name="main_fragment_main_text">Tab the machine to start</string>
 </resources>

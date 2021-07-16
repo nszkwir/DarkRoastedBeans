@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinator"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,50 +10,63 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/toolbar_padding">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:padding="4dp"
-            android:id="@+id/toolbarImage"
-            android:layout_width="@dimen/toolback_back_arrow_size"
-            android:layout_height="@dimen/toolback_back_arrow_size"
-            android:src="@drawable/ic_back_24"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbarTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbarTitle"
-            app:tint="@color/black" />
-
-        <TextView
-            android:id="@+id/toolbarTitle"
-            style="@style/AvenirNextTextViewStyle.ToolbarTitle"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="@dimen/toolbar_title_textSize"
-            app:layout_constraintStart_toEndOf="@+id/toolbarImage"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Dark Roasted Beans" />
-
-        <TextView
-            android:id="@+id/toolbarMainText"
-            style="@style/AvenirNextTextViewStyle.ToolbarMainText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/toolbar_main_text_marginTop"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            android:textSize="@dimen/toolbar_main_text_textSize"
+            android:padding="@dimen/toolbar_padding"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarTitle"
-            tools:text="Tab the machine to start" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/toolbarImage"
+                android:layout_width="@dimen/toolback_back_arrow_size"
+                android:layout_height="@dimen/toolback_back_arrow_size"
+                android:padding="4dp"
+                android:src="@drawable/ic_back_24"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbarTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/toolbarTitle"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="@dimen/toolbar_title_textSize"
+                app:layout_constraintStart_toEndOf="@+id/toolbarImage"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Dark Roasted Beans" />
+
+            <TextView
+                android:id="@+id/toolbarMainText"
+                style="@style/AvenirNextTextViewStyle.ToolbarMainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/toolbar_main_text_marginTop"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/toolbar_main_text_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarTitle"
+                tools:text="Tab the machine to start" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clProgressBar"
