@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_padding">16dp</dimen>
+    <dimen name="toolback_back_arrow_size">20dp</dimen>
+    <dimen name="toolbar_title_textSize">16sp</dimen>
+    <dimen name="toolbar_main_text_textSize">24sp</dimen>
+    <dimen name="toolbar_main_text_marginTop">4dp</dimen>
+</resources>
