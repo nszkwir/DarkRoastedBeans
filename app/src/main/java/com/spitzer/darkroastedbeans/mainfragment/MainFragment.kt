@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.BaseFragment
@@ -13,6 +14,8 @@ class MainFragment : BaseFragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainFragmentViewModel
+
+    override fun getViewModel() = viewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,18 +34,16 @@ class MainFragment : BaseFragment() {
     ): View {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         setupView()
-//        defineObservables()
+        defineObservables()
         return binding.root
     }
 
+    fun defineObservables() {
+
+    }
+
     fun setupView() {
-        setupCustomToolbar(
-            getString(R.string.main_fragment_title),
-            getString(R.string.main_fragment_main_text),
-            false
-        )
         binding.backgroundImage.setOnClickListener {
-            //showSnackBar("Background image clicked")
             viewModel.getCoffeeMachineConfiguration()
         }
     }
