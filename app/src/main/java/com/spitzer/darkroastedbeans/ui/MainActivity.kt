@@ -1,12 +1,13 @@
-package com.spitzer.darkroastedbeans
+package com.spitzer.darkroastedbeans.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.databinding.MainActivityBinding
-import com.spitzer.darkroastedbeans.mainfragment.MainFragment
+import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment())
+                .replace(R.id.container, MachinePairingFragment())
                 .commitNow()
         }
         setupView()

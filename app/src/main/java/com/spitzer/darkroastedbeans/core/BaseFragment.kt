@@ -1,9 +1,9 @@
-package com.spitzer.darkroastedbeans
+package com.spitzer.darkroastedbeans.core
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.spitzer.darkroastedbeans.core.BaseViewModel
+import com.spitzer.darkroastedbeans.ui.MainActivity
 
 abstract class BaseFragment : Fragment() {
 

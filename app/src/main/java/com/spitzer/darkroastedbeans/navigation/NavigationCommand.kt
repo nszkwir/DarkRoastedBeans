@@ -1,5 +1,8 @@
-package com.spitzer.darkroastedbeans.core
+package com.spitzer.darkroastedbeans.navigation
+
+import androidx.navigation.NavDirections
 
 sealed class NavigationCommand {
-    data class To(val directions: NavDirections): NavigationCommand()
-    object Back: NavigationCommand()
+    data class To(val directions: NavDirections) : NavigationCommand()
+    object Back : NavigationCommand()
+}

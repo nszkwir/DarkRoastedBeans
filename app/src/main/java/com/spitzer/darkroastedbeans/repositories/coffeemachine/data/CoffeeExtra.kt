@@ -1,17 +1,15 @@
-package com.spitzer.darkroastedbeans.data
+package com.spitzer.darkroastedbeans.repositories.coffeemachine.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CoffeeType(
+data class CoffeeExtra(
     @SerializedName("_id")
     var id: String,
     @SerializedName("name")
     var name: String = "",
-    @SerializedName("sizes")
-    var sizes: ArrayList<String> = arrayListOf(),
-    @SerializedName("extras")
-    var extras: ArrayList<String> = arrayListOf(),
+    @SerializedName("subselections")
+    var subselections: ArrayList<CoffeeExtraSubselection>? = arrayListOf()
 ) : Parcelable

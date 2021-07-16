@@ -1,19 +1,20 @@
-package com.spitzer.darkroastedbeans.mainfragment
+package com.spitzer.darkroastedbeans.ui.coffeesize
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.spitzer.darkroastedbeans.R
-import com.spitzer.darkroastedbeans.BaseFragment
-import com.spitzer.darkroastedbeans.databinding.MainFragmentBinding
+import com.spitzer.darkroastedbeans.core.BaseFragment
+import com.spitzer.darkroastedbeans.databinding.CoffeeSizeFragmentBinding
+import com.spitzer.darkroastedbeans.databinding.CoffeeStyleFragmentBinding
+import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel
 
-class MainFragment : BaseFragment() {
-    private var _binding: MainFragmentBinding? = null
+class CoffeeSizeFragment : BaseFragment() {
+    private var _binding: CoffeeSizeFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainFragmentViewModel
+    private lateinit var viewModel: CoffeeSizeFragmentViewModel
 
     override fun getViewModel() = viewModel
 
@@ -22,35 +23,31 @@ class MainFragment : BaseFragment() {
 
         viewModel = ViewModelProvider(
             this,
-            MainFragmentViewModelFactory()
-        ).get(MainFragmentViewModel::class.java)
+            CoffeeSizeFragmentViewModelFactory()
+        ).get(CoffeeSizeFragmentViewModel::class.java)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = CoffeeSizeFragmentBinding.inflate(inflater, container, false)
         setupView()
         defineObservables()
         return binding.root
     }
 
     fun defineObservables() {
-
+        //findNavController().navigate()
     }
 
     fun setupView() {
-        binding.backgroundImage.setOnClickListener {
-            viewModel.getCoffeeMachineConfiguration()
-        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

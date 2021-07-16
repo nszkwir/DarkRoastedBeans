@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spitzer.darkroastedbeans.navigation.NavigationCommand
-import com.spitzer.darkroastedbeans.navigation.ToolbarConfiguration
 
 abstract class BaseViewModel : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.spitzer.darkroastedbeans.navigation
+package com.spitzer.darkroastedbeans.core
 
 class ToolbarConfiguration(
     val title: String = "",

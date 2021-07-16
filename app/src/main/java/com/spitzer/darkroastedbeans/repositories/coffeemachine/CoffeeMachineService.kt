@@ -1,6 +1,6 @@
-package com.spitzer.darkroastedbeans.repositories
+package com.spitzer.darkroastedbeans.repositories.coffeemachine
 
-import com.spitzer.darkroastedbeans.data.CoffeeMachineConfiguration
+import com.spitzer.darkroastedbeans.repositories.coffeemachine.data.CoffeeMachineConfiguration
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,4 +1,4 @@
-package com.spitzer.darkroastedbeans.data
+package com.spitzer.darkroastedbeans.repositories.coffeemachine.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

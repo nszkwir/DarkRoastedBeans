@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph">
+    <fragment
+        android:id="@+id/machinePairingFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragment"
+        tools:layout="@layout/machine_pairing_fragment">
+
+        <action
+            android:id="@+id/action_MachinePairingFragment_to_CoffeeStyleFragment"
+            app:destination="@id/coffeeStyleFragment">
+            <argument
+                android:name="model"
+                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+        </action>
+        <!--        <action-->
+        <!--            android:id="@+id/action_ProductDashboardFragment_to_SearchFragment"-->
+        <!--            app:destination="@id/SearchFragment"-->
+        <!--            app:popUpTo="@id/ProductDashboardFragment">-->
+        <!--            <argument-->
+        <!--                android:name="searchHistory"-->
+        <!--                app:argType="com.spitzer.examenmobilemeli.models.SearchHistory" />-->
+        <!--        </action>-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/coffeeStyleFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragment"
+        tools:layout="@layout/coffee_style_fragment">
+        <action
+            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"
+            app:destination="@id/coffeeSizeFragment">
+            <argument
+                android:name="model"
+                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/coffeeSizeFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragment"
+        tools:layout="@layout/coffee_style_fragment">
+        <!--        <action-->
+        <!--            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"-->
+        <!--            app:destination="@id/coffeeSizeeFragment">-->
+        <!--            <argument-->
+        <!--                android:name="model"-->
+        <!--                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />-->
+        <!--        </action>-->
+    </fragment>
+</navigation>

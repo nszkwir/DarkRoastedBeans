@@ -1,16 +1,16 @@
-package com.spitzer.darkroastedbeans.mainfragment
+package com.spitzer.darkroastedbeans.ui.machinepairing
 
 import com.spitzer.darkroastedbeans.core.BaseViewModel
-import com.spitzer.darkroastedbeans.data.CoffeeMachineConfiguration
-import com.spitzer.darkroastedbeans.repositories.CoffeeMachineRepository
-import com.spitzer.darkroastedbeans.repositories.CoffeeMachineRepositoryImpl
+import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepository
+import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepositoryImpl
+import com.spitzer.darkroastedbeans.repositories.coffeemachine.data.CoffeeMachineConfiguration
 import com.spitzer.network.ResultData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 
-class MainFragmentViewModel(
+class MachinePairingFragmentViewModel(
     override val coroutineContext: CoroutineContext,
     private val repository: CoffeeMachineRepository = CoffeeMachineRepositoryImpl()
 ) : BaseViewModel(), CoroutineScope {
