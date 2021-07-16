@@ -1,2 +1,3 @@
 rootProject.name = "DarkRoastedBeans"
 include ':app'
+include ':network'
