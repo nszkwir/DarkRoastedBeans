@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.MachinePairingFragmentBinding
+import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
 
 class MachinePairingFragment : BaseFragment() {
     private var _binding: MachinePairingFragmentBinding? = null
@@ -37,7 +39,15 @@ class MachinePairingFragment : BaseFragment() {
     }
 
     fun defineObservables() {
-        //findNavController().navigate()
+        viewModel.coffeeMachineConfiguration.observe(viewLifecycleOwner, {
+            it?.getContentIfNotHandled()?.let { coffeeMachineConfiguration ->
+                val action = MachinePairingFragmentDirections
+                    .actionMachinePairingFragmentToCoffeeStyleFragment(
+                        CoffeeSelectionModel(coffeeMachineConfiguration)
+                    )
+                findNavController().navigate(action)
+            }
+        })
     }
 
     fun setupView() {

@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeStyleFragmentBinding
-import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel
 
 class CoffeeStyleFragment : BaseFragment() {
     private var _binding: CoffeeStyleFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MachinePairingFragmentViewModel
+    private lateinit var viewModel: CoffeeStyleFragmentViewModel
 
     override fun getViewModel() = viewModel
 
@@ -22,7 +23,7 @@ class CoffeeStyleFragment : BaseFragment() {
         viewModel = ViewModelProvider(
             this,
             CoffeeStyleFragmentViewModelFactory()
-        ).get(MachinePairingFragmentViewModel::class.java)
+        ).get(CoffeeStyleFragmentViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -41,7 +42,9 @@ class CoffeeStyleFragment : BaseFragment() {
     }
 
     fun setupView() {
-
+        binding.buttonSyle.setOnClickListener {
+            findNavController().navigate(R.id.Action_CoffeeStyleFragment_to_CoffeeSizeFragment)
+        }
     }
 
     override fun onDestroyView() {

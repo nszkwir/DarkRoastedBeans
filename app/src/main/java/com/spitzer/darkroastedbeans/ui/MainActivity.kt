@@ -1,6 +1,8 @@
 package com.spitzer.darkroastedbeans.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +21,16 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MachinePairingFragment())
-                .commitNow()
-        }
+//        if (savedInstanceState == null) {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, MachinePairingFragment())
+//                .commitNow()
+//        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         setupView()
     }
 
@@ -35,12 +42,12 @@ class MainActivity : AppCompatActivity() {
 
     fun showProgressBar() {
         binding.clProgressBar.visibility = View.VISIBLE
-        binding.container.alpha = DIM_BACKGROUND_ALPHA
+        binding.coordinator.alpha = DIM_BACKGROUND_ALPHA
     }
 
     fun hideProgressBar() {
         binding.clProgressBar.visibility = View.GONE
-        binding.container.alpha = VISIBLE_BACKGROUND_ALPHA
+        binding.coordinator.alpha = VISIBLE_BACKGROUND_ALPHA
     }
 
     fun setupCustomToolbar(title: String, mainText: String, shouldShowBackArrow: Boolean) {
@@ -51,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showSnackbar(message: String) {
-        Snackbar.make(binding.container, message, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.coordinator, message, Snackbar.LENGTH_SHORT).show()
     }
 
     companion object {

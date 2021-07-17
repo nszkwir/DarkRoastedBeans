@@ -2,15 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_graph">
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/MachinePairingFragment">
     <fragment
-        android:id="@+id/machinePairingFragment"
+        android:id="@+id/MachinePairingFragment"
         android:name="com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragment"
         tools:layout="@layout/machine_pairing_fragment">
 
         <action
-            android:id="@+id/action_MachinePairingFragment_to_CoffeeStyleFragment"
-            app:destination="@id/coffeeStyleFragment">
+            android:id="@+id/Action_MachinePairingFragment_to_CoffeeStyleFragment"
+            app:destination="@id/CoffeeStyleFragment">
             <argument
                 android:name="model"
                 app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
@@ -26,12 +27,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/coffeeStyleFragment"
+        android:id="@+id/CoffeeStyleFragment"
         android:name="com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragment"
         tools:layout="@layout/coffee_style_fragment">
         <action
-            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"
-            app:destination="@id/coffeeSizeFragment">
+            android:id="@+id/Action_CoffeeStyleFragment_to_CoffeeSizeFragment"
+            app:destination="@id/CoffeeSizeFragment">
             <argument
                 android:name="model"
                 app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
@@ -39,8 +40,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/coffeeSizeFragment"
-        android:name="com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragment"
+        android:id="@+id/CoffeeSizeFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.coffeesize.CoffeeSizeFragment"
         tools:layout="@layout/coffee_style_fragment">
         <!--        <action-->
         <!--            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"-->
