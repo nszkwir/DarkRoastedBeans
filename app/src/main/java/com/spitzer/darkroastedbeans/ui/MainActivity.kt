@@ -21,12 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, MachinePairingFragment())
-//                .commitNow()
-//        }
-
     }
 
     override fun onStart() {

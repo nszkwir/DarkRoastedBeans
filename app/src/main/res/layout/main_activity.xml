@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/toolbarImage"
-                android:layout_width="@dimen/toolback_back_arrow_size"
-                android:layout_height="@dimen/toolback_back_arrow_size"
+                android:layout_width="@dimen/toolbar_back_arrow_size"
+                android:layout_height="@dimen/toolbar_back_arrow_size"
                 android:padding="4dp"
                 android:src="@drawable/ic_back_24"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbarTitle"
@@ -65,6 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:defaultNavHost="true"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:navGraph="@navigation/navigation_graph"/>
 

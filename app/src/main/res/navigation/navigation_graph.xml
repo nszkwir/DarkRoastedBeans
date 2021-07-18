@@ -10,28 +10,23 @@
         tools:layout="@layout/machine_pairing_fragment">
 
         <action
-            android:id="@+id/Action_MachinePairingFragment_to_CoffeeStyleFragment"
+            android:id="@+id/action_MachinePairingFragment_to_CoffeeStyleFragment"
             app:destination="@id/CoffeeStyleFragment">
             <argument
                 android:name="model"
                 app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
         </action>
-        <!--        <action-->
-        <!--            android:id="@+id/action_ProductDashboardFragment_to_SearchFragment"-->
-        <!--            app:destination="@id/SearchFragment"-->
-        <!--            app:popUpTo="@id/ProductDashboardFragment">-->
-        <!--            <argument-->
-        <!--                android:name="searchHistory"-->
-        <!--                app:argType="com.spitzer.examenmobilemeli.models.SearchHistory" />-->
-        <!--        </action>-->
     </fragment>
 
     <fragment
         android:id="@+id/CoffeeStyleFragment"
         android:name="com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragment"
         tools:layout="@layout/coffee_style_fragment">
+        <argument
+            android:name="model"
+            app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
         <action
-            android:id="@+id/Action_CoffeeStyleFragment_to_CoffeeSizeFragment"
+            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"
             app:destination="@id/CoffeeSizeFragment">
             <argument
                 android:name="model"
@@ -43,12 +38,31 @@
         android:id="@+id/CoffeeSizeFragment"
         android:name="com.spitzer.darkroastedbeans.ui.coffeesize.CoffeeSizeFragment"
         tools:layout="@layout/coffee_style_fragment">
-        <!--        <action-->
-        <!--            android:id="@+id/action_CoffeeStyleFragment_to_CoffeeSizeFragment"-->
-        <!--            app:destination="@id/coffeeSizeeFragment">-->
-        <!--            <argument-->
-        <!--                android:name="model"-->
-        <!--                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />-->
-        <!--        </action>-->
+        <argument
+            android:name="model"
+            app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+        <action
+            android:id="@+id/action_CoffeeSizeFragment_to_CoffeeExtrasFragment"
+            app:destination="@id/CoffeeExtrasFragment">
+            <argument
+                android:name="model"
+                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/CoffeeExtrasFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.coffeeextra.CoffeeExtrasFragment"
+        tools:layout="@layout/coffee_extras_fragment">
+        <argument
+            android:name="model"
+            app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+<!--        <action-->
+<!--            android:id="@+id/action_CoffeeSizeFragment_to_CoffeeExtrasFragment"-->
+<!--            app:destination="@id/CoffeeExtrasFragment">-->
+<!--            <argument-->
+<!--                android:name="model"-->
+<!--                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />-->
+<!--        </action>-->
     </fragment>
 </navigation>
