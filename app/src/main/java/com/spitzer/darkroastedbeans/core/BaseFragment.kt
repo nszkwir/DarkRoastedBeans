@@ -37,4 +37,9 @@ abstract class BaseFragment : Fragment() {
             shouldShowBackArrow
         )
     }
+
+    override fun onResume() {
+        super.onResume()
+        getViewModel().configureToolbar()
+    }
 }

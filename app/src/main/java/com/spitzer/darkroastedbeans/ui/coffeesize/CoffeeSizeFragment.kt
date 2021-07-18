@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,11 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeSizeFragmentBinding
-import com.spitzer.darkroastedbeans.databinding.CoffeeStyleFragmentBinding
 import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
-import com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragmentArgs
-import com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragmentDirections
-import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel
 import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
 
 class CoffeeSizeFragment : BaseFragment() {

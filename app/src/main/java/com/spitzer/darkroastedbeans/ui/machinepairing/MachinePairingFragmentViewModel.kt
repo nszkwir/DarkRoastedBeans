@@ -22,13 +22,11 @@ class MachinePairingFragmentViewModel(
     var coffeeMachineConfiguration: LiveData<Event<CoffeeMachineConfiguration>> =
         _coffeeMachineConfiguration
 
-    init {
-        setToolbarConfiguration(
-            FRAGMENT_TITLE,
-            FRAGMENT_MAIN_TEXT,
-            IS_BACK_ALLOWED
-        )
-    }
+    override fun configureToolbar() = setToolbarConfiguration(
+        FRAGMENT_TITLE,
+        FRAGMENT_MAIN_TEXT,
+        IS_BACK_ALLOWED
+    )
 
     fun getCoffeeMachineConfiguration() {
         this.requestCoffeeMachineConfiguration()
