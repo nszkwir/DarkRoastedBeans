@@ -6,16 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeStyleFragmentBinding
+import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
+import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
 
 class CoffeeStyleFragment : BaseFragment() {
+
     private var _binding: CoffeeStyleFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CoffeeStyleFragmentViewModel
 
+    private lateinit var viewModel: CoffeeStyleFragmentViewModel
     override fun getViewModel() = viewModel
+
+    private lateinit var coffeeItemAdapter: CoffeeItemAdapter
+    private var model: CoffeeSelectionModel? = null
+    val args: CoffeeStyleFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +42,46 @@ class CoffeeStyleFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = CoffeeStyleFragmentBinding.inflate(inflater, container, false)
-        setupView()
-        defineObservables()
         return binding.root
     }
 
-    fun defineObservables() {
-        //findNavController().navigate()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        model = args.model
+
+        if (model == null || model?.machineConfiguration == null) {
+            findNavController().popBackStack(R.id.MachinePairingFragment, false)
+        }
+
+        coffeeItemAdapter = CoffeeItemAdapter(
+            (model as CoffeeSelectionModel).getTypes(),
+            { headerId -> onHeaderClick(headerId) },
+            { headerId, extraId -> onExtrasClick(headerId, extraId) })
+
+        binding.coffeeStyleRecyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = coffeeItemAdapter
+            adapter?.notifyDataSetChanged()
+        }
     }
 
-    fun setupView() {
-        binding.buttonSyle.setOnClickListener {
-            findNavController().navigate(R.id.Action_CoffeeStyleFragment_to_CoffeeSizeFragment)
+    private fun onHeaderClick(headerId: String) {
+        model?.let {
+            if (headerId.isNotEmpty()) {
+                model?.styleId = headerId
+                val action = CoffeeStyleFragmentDirections
+                    .actionCoffeeStyleFragmentToCoffeeSizeFragment(model!!)
+                findNavController().navigate(action)
+            }
         }
+        //showSnackBar("HeaderId: $headerId")
+    }
+
+    private fun onExtrasClick(headerId: String, extraId: String) {
+        // showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
+        // This function should not be executed
+        // The styles shown has no extras
     }
 
     override fun onDestroyView() {
