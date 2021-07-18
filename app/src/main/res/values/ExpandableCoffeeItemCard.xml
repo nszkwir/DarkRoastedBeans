@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExpandableCoffeeItemCard">
+        <attr name="collapsedHeight" format="integer" />
+        <attr name="collapsable" format="boolean" />
+        <attr name="isExpanded" format="boolean" />
+    </declare-styleable>
+</resources>
