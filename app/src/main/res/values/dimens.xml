@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toolbar_padding">16dp</dimen>
-    <dimen name="toolback_back_arrow_size">20dp</dimen>
+    <dimen name="toolbar_back_arrow_size">20dp</dimen>
     <dimen name="toolbar_title_textSize">16sp</dimen>
     <dimen name="toolbar_main_text_textSize">24sp</dimen>
     <dimen name="toolbar_main_text_marginTop">4dp</dimen>
+    <dimen name="coffee_extra_card_radius">8dp</dimen>
+    <dimen name="coffee_extra_card_marginTop">8dp</dimen>
+    <dimen name="coffee_extra_card_padding">16dp</dimen>
+    <dimen name="coffee_extra_circle_icon_size">24dp</dimen>
+    <dimen name="coffee_item_icon_width">48dp</dimen>
+    <dimen name="coffee_item_icon_height">46dp</dimen>
+    <dimen name="coffee_item_card_radius">4dp</dimen>
+    <dimen name="coffee_item_card_elevation">1dp</dimen>
+    <dimen name="coffee_item_card_padding">24dp</dimen>
+    <dimen name="coffee_item_name_marginStart">19dp</dimen>
+    <dimen name="coffee_item_spacing_line_marginTop">25dp</dimen>
 </resources>
