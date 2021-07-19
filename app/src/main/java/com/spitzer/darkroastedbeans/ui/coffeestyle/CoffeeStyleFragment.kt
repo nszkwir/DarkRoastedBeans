@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,11 +45,14 @@ class CoffeeStyleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setCoffeeSelectionModel(args.model)
+        setupView()
+    }
 
+    private fun setupView() {
         coffeeItemAdapter = CoffeeItemAdapter(
             viewModel.coffeeSelectionModel.value!!.getTypes(),
-            { headerId -> onHeaderClick(headerId) },
-            { headerId, extraId -> onExtrasClick(headerId, extraId) })
+            { headerId -> viewModel.onHeaderClick(headerId) },
+            { headerId, extraId -> viewModel.onExtrasClick(headerId, extraId) })
 
         binding.coffeeStyleRecyclerView.apply {
             layoutManager =
@@ -58,21 +60,6 @@ class CoffeeStyleFragment : BaseFragment() {
             adapter = coffeeItemAdapter
             adapter?.notifyDataSetChanged()
         }
-    }
-
-    private fun onHeaderClick(headerId: String) {
-        if (headerId.isNotEmpty()) {
-            viewModel.coffeeSelectionModel.value!!.styleId = headerId
-            val action = CoffeeStyleFragmentDirections
-                .actionCoffeeStyleFragmentToCoffeeSizeFragment(
-                    viewModel.coffeeSelectionModel.value!!
-                )
-            findNavController().navigate(action)
-        }
-    }
-
-    private fun onExtrasClick(headerId: String, extraId: String) {
-        // TODO handle coffee styles with extras if possible
     }
 
     override fun onDestroyView() {

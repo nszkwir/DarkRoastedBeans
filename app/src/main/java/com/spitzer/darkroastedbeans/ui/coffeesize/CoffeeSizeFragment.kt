@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,8 +47,8 @@ class CoffeeSizeFragment : BaseFragment() {
 
         coffeeItemAdapter = CoffeeItemAdapter(
             viewModel.coffeeSelectionModel.value!!.getSizesByStyle(),
-            { headerId -> onHeaderClick(headerId) },
-            { headerId, extraId -> onExtrasClick(headerId, extraId) })
+            { headerId -> viewModel.onHeaderClick(headerId) },
+            { headerId, extraId -> viewModel.onExtrasClick(headerId, extraId) })
 
         binding.coffeeSizesRecyclerView.apply {
             layoutManager =
@@ -57,21 +56,6 @@ class CoffeeSizeFragment : BaseFragment() {
             adapter = coffeeItemAdapter
             adapter?.notifyDataSetChanged()
         }
-    }
-
-    private fun onHeaderClick(headerId: String) {
-        if (headerId.isNotEmpty()) {
-            viewModel.coffeeSelectionModel.value!!.sizeId = headerId
-            val action = CoffeeSizeFragmentDirections
-                .actionCoffeeSizeFragmentToCoffeeExtrasFragment(
-                    viewModel.coffeeSelectionModel.value!!
-                )
-            findNavController().navigate(action)
-        }
-    }
-
-    private fun onExtrasClick(headerId: String, extraId: String) {
-        // TODO handle coffee size with extras (if possible)
     }
 
     override fun onDestroyView() {

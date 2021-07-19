@@ -4,8 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
+import com.spitzer.darkroastedbeans.navigation.NavigationCommand
 
 abstract class BaseViewModel : ViewModel() {
+
+    protected val _navigation = MutableLiveData<Event<NavigationCommand>>()
+    val navigation: LiveData<Event<NavigationCommand>> = _navigation
+
 
     private val _coffeeSelectionModel = MutableLiveData<CoffeeSelectionModel>()
     val coffeeSelectionModel: LiveData<CoffeeSelectionModel> = _coffeeSelectionModel

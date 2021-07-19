@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.MachinePairingFragmentBinding
 import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
@@ -42,11 +41,7 @@ class MachinePairingFragment : BaseFragment() {
             it?.getContentIfNotHandled()?.let { coffeeMachineConfiguration ->
                 hideProgress()
                 viewModel.setCoffeeSelectionModel(CoffeeSelectionModel(coffeeMachineConfiguration))
-                val action = MachinePairingFragmentDirections
-                    .actionMachinePairingFragmentToCoffeeStyleFragment(
-                        viewModel.coffeeSelectionModel.value!!
-                    )
-                findNavController().navigate(action)
+                viewModel.navigateForward()
             }
         })
     }

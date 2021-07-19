@@ -13,8 +13,7 @@ class CoffeeSelectionModel(
     val machineConfiguration: CoffeeMachineConfiguration,
     var styleId: String? = null,
     var sizeId: String? = null,
-    var extraId: String? = null,
-    var extraSubselectionId: String? = null
+    var extras: ArrayList<Pair<String,String>>? = null
 ) : Parcelable {
 
     @IgnoredOnParcel
@@ -67,4 +66,5 @@ class CoffeeSelectionModel(
             } as ArrayList<CoffeeItemExtra>
         ) } as ArrayList<CoffeeItem>
     }
+
 }

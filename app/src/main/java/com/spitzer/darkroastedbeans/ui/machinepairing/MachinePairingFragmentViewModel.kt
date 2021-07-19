@@ -2,8 +2,10 @@ package com.spitzer.darkroastedbeans.ui.machinepairing
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import com.spitzer.darkroastedbeans.core.BaseViewModel
 import com.spitzer.darkroastedbeans.core.Event
+import com.spitzer.darkroastedbeans.navigation.NavigationCommand
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepository
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepositoryImpl
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.data.CoffeeMachineConfiguration
@@ -27,6 +29,13 @@ class MachinePairingFragmentViewModel(
         IS_BACK_ALLOWED
     )
 
+    fun navigateForward() {
+        val action = MachinePairingFragmentDirections
+            .actionMachinePairingFragmentToCoffeeStyleFragment(
+                coffeeSelectionModel.value!!
+            )
+        _navigation.value = Event(NavigationCommand.To(action))
+    }
     fun getCoffeeMachineConfiguration() {
         this.requestCoffeeMachineConfiguration()
     }

@@ -4,17 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.coffeeextra.CoffeeExtrasFragment">
+    android:layout_marginHorizontal="13dp"
+    tools:context=".ui.coffeeselection.CoffeeSelectionFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/coffeeExtrasRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="13dp"
-        android:paddingHorizontal="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/style"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="style id:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/styleId"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/style"
+        app:layout_constraintTop_toTopOf="@+id/style"
+        tools:text="dasdknd102312oknasdn1" />
+
+    <TextView
+        android:id="@+id/size"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="size id:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/style" />
+
+    <TextView
+        android:id="@+id/sizeId"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/size"
+        app:layout_constraintTop_toTopOf="@+id/size"
+        tools:text="dasdknd102312oknasdn1" />
+
+    <TextView
+        android:id="@+id/extras"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="extras id's:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/size" />
+
+    <TextView
+        android:id="@+id/extrasId"
+        style="@style/AvenirNextTextViewStyle.ToolbarTitle"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/extras"
+        app:layout_constraintTop_toTopOf="@+id/extras"
+        tools:text="dasdknd102312oknasdn1\n991lsldzksdba10123fladk1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

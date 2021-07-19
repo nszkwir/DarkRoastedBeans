@@ -1,4 +1,4 @@
-package com.spitzer.darkroastedbeans.ui.coffeeextra
+package com.spitzer.darkroastedbeans.ui.coffeeselection
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,30 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.spitzer.darkroastedbeans.core.BaseFragment
-import com.spitzer.darkroastedbeans.databinding.CoffeeExtrasFragmentBinding
-import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
+import com.spitzer.darkroastedbeans.databinding.CoffeeSelectionFragmentBinding
 
-class CoffeeExtrasFragment : BaseFragment() {
+class CoffeeSelectionFragment : BaseFragment() {
 
-    private var _binding: CoffeeExtrasFragmentBinding? = null
+    private var _binding: CoffeeSelectionFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: CoffeeExtrasFragmentViewModel
+    private lateinit var viewModel: CoffeeSelectionFragmentViewModel
     override fun getViewModel() = viewModel
 
-    private lateinit var coffeeItemAdapter: CoffeeItemAdapter
-    private val args: CoffeeExtrasFragmentArgs by navArgs()
+    private val args: CoffeeSelectionFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(
             this,
-            CoffeeExtrasFragmentViewModelFactory()
-        ).get(CoffeeExtrasFragmentViewModel::class.java)
+            CoffeeSelectionFragmentViewModelFactory()
+        ).get(CoffeeSelectionFragmentViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -37,37 +33,20 @@ class CoffeeExtrasFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CoffeeExtrasFragmentBinding.inflate(inflater, container, false)
+        _binding = CoffeeSelectionFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.setCoffeeSelectionModel(args.model)
-
-        coffeeItemAdapter = CoffeeItemAdapter(
-            viewModel.coffeeSelectionModel.value!!.getExtrasByStyle(),
-            { headerId -> onHeaderClick(headerId) },
-            { headerId, extraId -> onExtrasClick(headerId, extraId) })
-
-        binding.coffeeExtrasRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            adapter = coffeeItemAdapter
-            adapter?.notifyDataSetChanged()
-        }
+        setupView()
     }
 
-    private fun onHeaderClick(headerId: String) {
-        showSnackBar("HeaderId: $headerId")
-        // TODO handle extras without subselections
-    }
-
-    private fun onExtrasClick(headerId: String, extraId: String) {
-        val styleId = viewModel.coffeeSelectionModel.value!!.styleId
-        val sizeId = viewModel.coffeeSelectionModel.value!!.sizeId
-        showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
+    private fun setupView() {
+        binding.styleId.text = viewModel.getStyleId()
+        binding.sizeId.text = viewModel.getSizeId()
+        binding.extrasId.text = viewModel.getExtrasDetail()
     }
 
     override fun onDestroyView() {

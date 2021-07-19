@@ -1,17 +1,12 @@
 package com.spitzer.darkroastedbeans.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.databinding.MainActivityBinding
-import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        val navigator = Navigation.findNavController(this,R.id.container)
+        val navigator = Navigation.findNavController(this, R.id.container)
         binding.toolbarImage.setOnClickListener {
             navigator.navigateUp()
         }

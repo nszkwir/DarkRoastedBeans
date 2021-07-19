@@ -43,13 +43,15 @@ class CoffeeExtrasFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.setCoffeeSelectionModel(args.model)
+        setupView()
+    }
 
+    private fun setupView() {
         coffeeItemAdapter = CoffeeItemAdapter(
             viewModel.coffeeSelectionModel.value!!.getExtrasByStyle(),
-            { headerId -> onHeaderClick(headerId) },
-            { headerId, extraId -> onExtrasClick(headerId, extraId) })
+            { headerId -> viewModel.onHeaderClick(headerId) },
+            { headerId, extraId -> viewModel.onExtrasClick(headerId, extraId) })
 
         binding.coffeeExtrasRecyclerView.apply {
             layoutManager =
@@ -57,17 +59,10 @@ class CoffeeExtrasFragment : BaseFragment() {
             adapter = coffeeItemAdapter
             adapter?.notifyDataSetChanged()
         }
-    }
 
-    private fun onHeaderClick(headerId: String) {
-        showSnackBar("HeaderId: $headerId")
-        // TODO handle extras without subselections
-    }
-
-    private fun onExtrasClick(headerId: String, extraId: String) {
-        val styleId = viewModel.coffeeSelectionModel.value!!.styleId
-        val sizeId = viewModel.coffeeSelectionModel.value!!.sizeId
-        showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
+        binding.toCoffeeSelection.setOnClickListener {
+            viewModel.navigateToCoffeeSelection()
+        }
     }
 
     override fun onDestroyView() {

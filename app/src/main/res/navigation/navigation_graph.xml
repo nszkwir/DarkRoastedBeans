@@ -57,12 +57,21 @@
         <argument
             android:name="model"
             app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
-<!--        <action-->
-<!--            android:id="@+id/action_CoffeeSizeFragment_to_CoffeeExtrasFragment"-->
-<!--            app:destination="@id/CoffeeExtrasFragment">-->
-<!--            <argument-->
-<!--                android:name="model"-->
-<!--                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />-->
-<!--        </action>-->
+        <action
+            android:id="@+id/action_CoffeeExtrasFragment_to_CoffeeSelectionFragment"
+            app:destination="@id/CoffeeSelectionFragment">
+            <argument
+                android:name="model"
+                app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/CoffeeSelectionFragment"
+        android:name="com.spitzer.darkroastedbeans.ui.coffeeselection.CoffeeSelectionFragment"
+        tools:layout="@layout/coffee_selection_fragment">
+        <argument
+            android:name="model"
+            app:argType="com.spitzer.darkroastedbeans.model.CoffeeSelectionModel" />
     </fragment>
 </navigation>
