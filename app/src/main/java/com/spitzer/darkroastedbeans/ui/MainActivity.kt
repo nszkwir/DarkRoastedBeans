@@ -6,6 +6,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.databinding.MainActivityBinding
@@ -29,8 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        val navigator = Navigation.findNavController(this,R.id.container)
         binding.toolbarImage.setOnClickListener {
-            Toast.makeText(applicationContext, "BACK", Toast.LENGTH_SHORT).show()
+            navigator.navigateUp()
         }
     }
 
