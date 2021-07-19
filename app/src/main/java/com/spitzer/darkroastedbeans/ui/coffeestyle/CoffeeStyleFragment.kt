@@ -25,7 +25,7 @@ class CoffeeStyleFragment : BaseFragment() {
 
     private lateinit var coffeeItemAdapter: CoffeeItemAdapter
     private var model: CoffeeSelectionModel? = null
-    val args: CoffeeStyleFragmentArgs by navArgs()
+    private val args: CoffeeStyleFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +75,10 @@ class CoffeeStyleFragment : BaseFragment() {
                 findNavController().navigate(action)
             }
         }
-        //showSnackBar("HeaderId: $headerId")
     }
 
     private fun onExtrasClick(headerId: String, extraId: String) {
-        // showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
-        // This function should not be executed
-        // The styles shown has no extras
+        // TODO handle coffee styles with extras if possible
     }
 
     override fun onDestroyView() {

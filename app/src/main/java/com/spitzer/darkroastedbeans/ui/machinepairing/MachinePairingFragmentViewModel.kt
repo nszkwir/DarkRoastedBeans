@@ -12,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-
 class MachinePairingFragmentViewModel(
     override val coroutineContext: CoroutineContext,
     private val repository: CoffeeMachineRepository = CoffeeMachineRepositoryImpl()
@@ -38,12 +37,14 @@ class MachinePairingFragmentViewModel(
                 if (result.data != null) {
                     _coffeeMachineConfiguration.value = Event(result.data!!)
                 } else {
-
+                    // TODO no-data handling
                 }
             }
             is ResultData.Error -> {
                 if (result.isNetworkError()) {
+                    // TODO NetworkError handling
                 } else {
+                    // TODO Error handling
                 }
             }
         }

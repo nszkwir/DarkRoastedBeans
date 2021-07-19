@@ -37,7 +37,7 @@ class MachinePairingFragment : BaseFragment() {
         return binding.root
     }
 
-    fun defineObservables() {
+    private fun defineObservables() {
         viewModel.coffeeMachineConfiguration.observe(viewLifecycleOwner, {
             it?.getContentIfNotHandled()?.let { coffeeMachineConfiguration ->
                 hideProgress()
@@ -50,7 +50,7 @@ class MachinePairingFragment : BaseFragment() {
         })
     }
 
-    fun setupView() {
+    private fun setupView() {
         binding.backgroundImage.setOnClickListener {
             showProgress()
             viewModel.getCoffeeMachineConfiguration()

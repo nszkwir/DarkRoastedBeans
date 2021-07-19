@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,12 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeExtrasFragmentBinding
-import com.spitzer.darkroastedbeans.databinding.CoffeeSizeFragmentBinding
-import com.spitzer.darkroastedbeans.databinding.CoffeeStyleFragmentBinding
 import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
-import com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragmentArgs
-import com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragmentDirections
-import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel
 import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
 
 class CoffeeExtrasFragment : BaseFragment() {
@@ -31,7 +25,7 @@ class CoffeeExtrasFragment : BaseFragment() {
 
     private lateinit var coffeeItemAdapter: CoffeeItemAdapter
     private var model: CoffeeSelectionModel? = null
-    val args: CoffeeExtrasFragmentArgs by navArgs()
+    private val args: CoffeeExtrasFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,19 +67,14 @@ class CoffeeExtrasFragment : BaseFragment() {
     }
 
     private fun onHeaderClick(headerId: String) {
-//        model?.let {
-//            if (headerId.isNotEmpty()) {
-//                model?.sizeId = headerId
-//                val action = CoffeeSizeFragmentDirections
-//                    .actionCoffeeSizeFragmentToCoffeeExtrasFragment(model!!)
-//                findNavController().navigate(action)
-//            }
-//        }
         showSnackBar("HeaderId: $headerId")
+        // TODO handle extras without subselections
     }
 
     private fun onExtrasClick(headerId: String, extraId: String) {
-         showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
+        val styleId = (model as CoffeeSelectionModel).styleId
+        val sizeId = (model as CoffeeSelectionModel).sizeId
+        showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
     }
 
     override fun onDestroyView() {

@@ -11,10 +11,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class CoffeeSelectionModel(
     val machineConfiguration: CoffeeMachineConfiguration,
-    var styleId: String? = "",
-    var sizeId: String? = "",
-    var extraId: String? = "",
-    var extraSubselectionId: String? = ""
+    var styleId: String? = null,
+    var sizeId: String? = null,
+    var extraId: String? = null,
+    var extraSubselectionId: String? = null
 ) : Parcelable {
 
     @IgnoredOnParcel
