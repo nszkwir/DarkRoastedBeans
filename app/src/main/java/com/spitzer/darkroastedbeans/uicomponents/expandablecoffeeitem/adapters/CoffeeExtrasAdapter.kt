@@ -10,10 +10,10 @@ import com.spitzer.darkroastedbeans.extensions.listenToClick
 import com.spitzer.darkroastedbeans.model.CoffeeItemExtra
 
 class CoffeeExtrasAdapter(
-    private var items : ArrayList<CoffeeItemExtra>
+    private var items: ArrayList<CoffeeItemExtra>
 ) : RecyclerView.Adapter<CoffeeExtrasAdapter.ViewHolder>() {
 
-    lateinit var onItemClick: (Int,String) -> Unit
+    lateinit var onItemClick: (Int, String) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val item =

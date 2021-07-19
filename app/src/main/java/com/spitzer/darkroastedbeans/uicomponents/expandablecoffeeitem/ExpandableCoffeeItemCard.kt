@@ -5,8 +5,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.Transformation
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,25 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.spitzer.darkroastedbeans.R
-import com.spitzer.darkroastedbeans.databinding.CoffeeItemExpandableBinding
+import com.spitzer.darkroastedbeans.extensions.moveLeft
 import com.spitzer.darkroastedbeans.model.CoffeeItemExtra
-import com.spitzer.darkroastedbeans.uicomponents.ExpandableCoffeeItemCardAttr
-import com.spitzer.darkroastedbeans.uicomponents.ExpandableCoffeeItemCardAttrParser
-import com.spitzer.darkroastedbeans.uicomponents.ExpandableCoffeeItemCardConfiguration
-import com.spitzer.darkroastedbeans.uicomponents.ExpandableCoffeeItemCardConfigurationFactory
 import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeExtrasAdapter
 
 class ExpandableCoffeeItemCard : MaterialCardView {
 
-//    private lateinit var binding: CoffeeItemExpandableBinding
     private lateinit var extrasAdapter: CoffeeExtrasAdapter
     private var listOfExtras: ArrayList<CoffeeItemExtra> = arrayListOf()
-    private lateinit var headerLayout : ConstraintLayout
-    private lateinit var extrasLayout : ConstraintLayout
-    private lateinit var coffeeItemImage : ImageView
-    private lateinit var coffeeItemName : TextView
-    private lateinit var expandableItemList : RecyclerView
-
+    private lateinit var headerLayout: ConstraintLayout
+    private lateinit var extrasLayout: ConstraintLayout
+    private lateinit var coffeeItemImage: ImageView
+    private lateinit var coffeeItemName: TextView
+    private lateinit var expandableItemList: RecyclerView
 
     private lateinit var attr: ExpandableCoffeeItemCardAttr
     private lateinit var configuration: ExpandableCoffeeItemCardConfiguration
@@ -78,9 +70,7 @@ class ExpandableCoffeeItemCard : MaterialCardView {
 
     private fun setupComponents(config: ExpandableCoffeeItemCardConfiguration) {
         configuration = config
-//        val binding = CoffeeItemExpandableBinding.inflate(
-//            LayoutInflater.from(context), null, false
-//        )
+
         LayoutInflater.from(context).inflate(R.layout.coffee_item_expandable, this)
 
         headerLayout = findViewById(R.id.headerLayout)
@@ -116,7 +106,7 @@ class ExpandableCoffeeItemCard : MaterialCardView {
         requestLayout()
     }
 
-    fun toggleExpand() {
+    private fun toggleExpand() {
         if (isExpanded) {
             collapse()
         } else {
@@ -124,63 +114,15 @@ class ExpandableCoffeeItemCard : MaterialCardView {
         }
     }
 
-    fun expand() {
+    private fun expand() {
         extrasLayout.visibility = VISIBLE
         isExpanded = true
     }
 
-    fun collapse() {
+    private fun collapse() {
         extrasLayout.visibility = GONE
         isExpanded = false
     }
-
-//    fun expand() {
-//        if (isCollapsable) {
-//            val initialHeight = height
-//            measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-//            val targetHeight = measuredHeight
-//            val distanceToExpand = targetHeight - initialHeight
-//            val a: Animation = object : Animation() {
-//                override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
-//                    if (interpolatedTime == 1f) {
-//                        // Do this after expanded
-//                    }
-//                    layoutParams.height =
-//                        (initialHeight + distanceToExpand * interpolatedTime).toInt()
-//                    requestLayout()
-//                }
-//
-//                override fun willChangeBounds(): Boolean {
-//                    return true
-//                }
-//            }
-//            a.duration = distanceToExpand.toLong()
-//            startAnimation(a)
-//        }
-//    }
-//
-//    fun collapse() {
-//        if (isCollapsable) {
-//            val initialHeight = measuredHeight
-//            val distanceToCollapse = (initialHeight - collapsedHeight)
-//            val a: Animation = object : Animation() {
-//                override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
-//                    if (interpolatedTime == 1f) {
-//                        // Do this after collapsed
-//                    }
-//                    layoutParams.height =
-//                        (initialHeight - distanceToCollapse * interpolatedTime).toInt()
-//                    requestLayout()
-//                }
-//
-//                override fun willChangeBounds(): Boolean {
-//                    return true
-//                }
-//            }
-//            a.duration = distanceToCollapse.toLong()
-//            startAnimation(a)
-//        }
-//    }
 
     fun setItemName(itemName: String) {
         coffeeItemName.text = itemName
@@ -226,6 +168,17 @@ class ExpandableCoffeeItemCard : MaterialCardView {
 
     fun setCollapsableEnabled(collapsable: Boolean) {
         isCollapsable = collapsable
+    }
+
+    fun hideIcon() {
+        coffeeItemImage.apply {
+            val pLayoutParams = layoutParams
+            pLayoutParams.width = 0
+            layoutParams = pLayoutParams
+            requestLayout()
+        }
+        coffeeItemName.moveLeft(-19)
+        requestLayout()
     }
 
     private fun setViewId() {

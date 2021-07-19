@@ -1,4 +1,4 @@
-package com.spitzer.darkroastedbeans.uicomponents
+package com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem
 
 import android.content.Context
 import android.util.AttributeSet

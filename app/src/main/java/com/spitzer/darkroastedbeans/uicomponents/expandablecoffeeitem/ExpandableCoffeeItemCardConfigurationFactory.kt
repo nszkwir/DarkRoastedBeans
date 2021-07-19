@@ -1,4 +1,4 @@
-package com.spitzer.darkroastedbeans.uicomponents
+package com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem
 
 internal data class ExpandableCoffeeItemCardConfiguration(
     var collapsedHeight: Int,

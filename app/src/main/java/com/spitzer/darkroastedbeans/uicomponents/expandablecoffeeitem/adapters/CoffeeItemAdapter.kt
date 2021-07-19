@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.databinding.CoffeeItemBinding
-import com.spitzer.darkroastedbeans.databinding.CoffeeItemExpandableBinding
 import com.spitzer.darkroastedbeans.model.CoffeeItem
+import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.helper.CoffeeItemIconHelper
 
 class CoffeeItemAdapter(
     private var items: ArrayList<CoffeeItem>,
@@ -46,20 +45,27 @@ class CoffeeItemAdapter(
         fun bind(item: CoffeeItem) {
             headerId = item.id
             itemBinding.expandableItem.setItemName(item.name)
-            itemBinding.expandableItem.setItemIcon(
-                ContextCompat.getDrawable(
-                    itemBinding.root.context,
-                    R.drawable.ic_cappuchino
-                )!!
-            )
+            val iconDrawableId = CoffeeItemIconHelper.getIcon(item.id)
+            if (iconDrawableId == null) {
+                itemBinding.expandableItem.hideIcon()
+            } else {
+                itemBinding.expandableItem.setItemIcon(
+                    ContextCompat.getDrawable(
+                        itemBinding.root.context,
+                        iconDrawableId
+                    )!!
+                )
+            }
+
             if (item.expandable && item.extras.isNotEmpty()) {
                 itemBinding.expandableItem.setCollapsableEnabled(item.expandable)
                 itemBinding.expandableItem.setExtras(item.extras)
-                itemBinding.expandableItem.setOnExtrasClickFunction { extraId -> onExtrasClick(extraId) }
+                itemBinding.expandableItem.setOnExtrasClickFunction { extraId ->
+                    onExtrasClick(extraId)
+                }
             } else {
                 itemBinding.expandableItem.setOnHeaderClickFunction { onHeaderClick() }
             }
-
         }
 
         private fun onHeaderClick() {

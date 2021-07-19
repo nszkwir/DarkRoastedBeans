@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_marginTop="66dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="66dp"
     tools:context=".ui.machinepairing.MachinePairingFragment">
 
     <ImageView
-        android:adjustViewBounds="true"
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:src="@drawable/main_fragment_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,10 @@
     <TextView
         android:id="@+id/linkText"
         style="@style/AvenirNextTextViewStyle.Hyperlink"
-        android:layout_marginTop="37dp"
-        android:layout_marginStart="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="37dp"
         android:text="@string/how_does_this_work"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backgroundImage" />
