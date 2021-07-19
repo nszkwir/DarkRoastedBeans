@@ -7,8 +7,8 @@ import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val _coffeeSelectionModel = MutableLiveData<Event<CoffeeSelectionModel>>()
-    val coffeeSelectionModel: LiveData<Event<CoffeeSelectionModel>> = _coffeeSelectionModel
+    private val _coffeeSelectionModel = MutableLiveData<CoffeeSelectionModel>()
+    val coffeeSelectionModel: LiveData<CoffeeSelectionModel> = _coffeeSelectionModel
 
     private val _toolbarConfiguration = MutableLiveData<Event<ToolbarConfiguration>>()
     val toolbarConfiguration: LiveData<Event<ToolbarConfiguration>> = _toolbarConfiguration
@@ -22,6 +22,6 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun setCoffeeSelectionModel(model: CoffeeSelectionModel) {
-        _coffeeSelectionModel.value = Event(model)
+        _coffeeSelectionModel.value = model
     }
 }
