@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeExtrasFragmentBinding
-import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
 import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
 
 class CoffeeExtrasFragment : BaseFragment() {
@@ -24,7 +21,6 @@ class CoffeeExtrasFragment : BaseFragment() {
     override fun getViewModel() = viewModel
 
     private lateinit var coffeeItemAdapter: CoffeeItemAdapter
-    private var model: CoffeeSelectionModel? = null
     private val args: CoffeeExtrasFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +43,11 @@ class CoffeeExtrasFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model = args.model
 
-        if (model == null || model?.machineConfiguration == null) {
-            findNavController().popBackStack(R.id.MachinePairingFragment, false)
-        }
+        viewModel.setCoffeeSelectionModel(args.model)
 
         coffeeItemAdapter = CoffeeItemAdapter(
-            (model as CoffeeSelectionModel).getExtrasByStyle(),
+            viewModel.coffeeSelectionModel.value!!.getExtrasByStyle(),
             { headerId -> onHeaderClick(headerId) },
             { headerId, extraId -> onExtrasClick(headerId, extraId) })
 
@@ -72,8 +65,8 @@ class CoffeeExtrasFragment : BaseFragment() {
     }
 
     private fun onExtrasClick(headerId: String, extraId: String) {
-        val styleId = (model as CoffeeSelectionModel).styleId
-        val sizeId = (model as CoffeeSelectionModel).sizeId
+        val styleId = viewModel.coffeeSelectionModel.value!!.styleId
+        val sizeId = viewModel.coffeeSelectionModel.value!!.sizeId
         showSnackBar("HeaderId: $headerId - ExtraId: $extraId")
     }
 

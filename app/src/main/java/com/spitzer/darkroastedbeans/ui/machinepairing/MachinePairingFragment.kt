@@ -41,9 +41,10 @@ class MachinePairingFragment : BaseFragment() {
         viewModel.coffeeMachineConfiguration.observe(viewLifecycleOwner, {
             it?.getContentIfNotHandled()?.let { coffeeMachineConfiguration ->
                 hideProgress()
+                viewModel.setCoffeeSelectionModel(CoffeeSelectionModel(coffeeMachineConfiguration))
                 val action = MachinePairingFragmentDirections
                     .actionMachinePairingFragmentToCoffeeStyleFragment(
-                        CoffeeSelectionModel(coffeeMachineConfiguration)
+                        viewModel.coffeeSelectionModel.value!!
                     )
                 findNavController().navigate(action)
             }

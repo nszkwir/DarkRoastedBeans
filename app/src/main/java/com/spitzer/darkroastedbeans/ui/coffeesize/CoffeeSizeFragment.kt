@@ -9,10 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseFragment
 import com.spitzer.darkroastedbeans.databinding.CoffeeSizeFragmentBinding
-import com.spitzer.darkroastedbeans.model.CoffeeSelectionModel
 import com.spitzer.darkroastedbeans.uicomponents.expandablecoffeeitem.adapters.CoffeeItemAdapter
 
 class CoffeeSizeFragment : BaseFragment() {
@@ -24,7 +22,6 @@ class CoffeeSizeFragment : BaseFragment() {
     override fun getViewModel() = viewModel
 
     private lateinit var coffeeItemAdapter: CoffeeItemAdapter
-    private var model: CoffeeSelectionModel? = null
     private val args: CoffeeSizeFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +44,10 @@ class CoffeeSizeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model = args.model
-
-        if (model == null || model?.machineConfiguration == null) {
-            findNavController().popBackStack(R.id.MachinePairingFragment, false)
-        }
+        viewModel.setCoffeeSelectionModel(args.model)
 
         coffeeItemAdapter = CoffeeItemAdapter(
-            (model as CoffeeSelectionModel).getSizesByStyle(),
+            viewModel.coffeeSelectionModel.value!!.getSizesByStyle(),
             { headerId -> onHeaderClick(headerId) },
             { headerId, extraId -> onExtrasClick(headerId, extraId) })
 
@@ -67,13 +60,13 @@ class CoffeeSizeFragment : BaseFragment() {
     }
 
     private fun onHeaderClick(headerId: String) {
-        model?.let {
-            if (headerId.isNotEmpty()) {
-                model?.sizeId = headerId
-                val action = CoffeeSizeFragmentDirections
-                    .actionCoffeeSizeFragmentToCoffeeExtrasFragment(model!!)
-                findNavController().navigate(action)
-            }
+        if (headerId.isNotEmpty()) {
+            viewModel.coffeeSelectionModel.value!!.sizeId = headerId
+            val action = CoffeeSizeFragmentDirections
+                .actionCoffeeSizeFragmentToCoffeeExtrasFragment(
+                    viewModel.coffeeSelectionModel.value!!
+                )
+            findNavController().navigate(action)
         }
     }
 
