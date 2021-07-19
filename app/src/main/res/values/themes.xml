@@ -64,4 +64,8 @@
         <item name="fontWeight">600</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="noRippleEffect" parent="Theme.MaterialComponents">
+        <item name="rippleColor">@android:color/transparent</item>
+    </style>
 </resources>

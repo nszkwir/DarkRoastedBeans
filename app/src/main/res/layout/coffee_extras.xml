@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="@style/noRippleEffect"
     android:layout_marginTop="@dimen/coffee_extra_card_marginTop"
     android:backgroundTint="@color/coffeeStrongGreen"
     app:cardCornerRadius="@dimen/coffee_extra_card_radius">
