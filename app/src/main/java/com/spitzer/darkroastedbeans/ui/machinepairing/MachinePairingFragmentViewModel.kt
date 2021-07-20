@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseViewModel
 import com.spitzer.darkroastedbeans.core.Event
+import com.spitzer.darkroastedbeans.core.ToolbarConfiguration
 import com.spitzer.darkroastedbeans.navigation.NavigationCommand
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepository
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepositoryImpl
@@ -20,15 +21,19 @@ class MachinePairingFragmentViewModel(
     private val repository: CoffeeMachineRepository = CoffeeMachineRepositoryImpl()
 ) : BaseViewModel(), CoroutineScope {
 
+    var fragmentTitle: Int = R.string.fragment_machine_pairing_title
+    var fragmentMainText: Int = R.string.fragment_machine_pairing_mainText
+    var isBackAllowed: Boolean = IS_BACK_ALLOWED
+
     private var _coffeeMachineConfiguration = MutableLiveData<Event<CoffeeMachineConfiguration>>()
     var coffeeMachineConfiguration: LiveData<Event<CoffeeMachineConfiguration>> =
         _coffeeMachineConfiguration
 
-    override fun configureToolbar() = setToolbarConfiguration(
-        FRAGMENT_TITLE,
-        FRAGMENT_MAIN_TEXT,
-        IS_BACK_ALLOWED
-    )
+    override fun configureToolbar() {
+        _toolbarConfiguration.value = Event(
+            ToolbarConfiguration(fragmentTitle, fragmentMainText, isBackAllowed)
+        )
+    }
 
     fun navigateForward() {
         val action = MachinePairingFragmentDirections
@@ -65,8 +70,6 @@ class MachinePairingFragmentViewModel(
     }
 
     companion object {
-        const val FRAGMENT_TITLE = "Dark Roasted Beans"
-        const val FRAGMENT_MAIN_TEXT = "Tab the machine to start"
         const val IS_BACK_ALLOWED = false
         const val COFFEE_MACHINE_ID = "60ba1ab72e35f2d9c786c610"
     }

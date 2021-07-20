@@ -6,4 +6,11 @@
     <string name="snackbar_could_not_fetch">Could not fetch data. Please retry.</string>
     <string name="snackbar_network_error">A network error occurred. Please retry.</string>
     <string name="snackbar_error">An error occurred. Please retry.</string>
+    <string name="fragment_machine_pairing_title">Dark Roasted Beans</string>
+    <string name="fragment_machine_pairing_mainText">Tab the machine to start</string>
+    <string name="fragment_generic_title">Brew with Lex</string>
+    <string name="fragment_coffee_style_main_text">Select your style</string>
+    <string name="fragment_coffee_size_main_text">Select your size</string>
+    <string name="fragment_coffee_selection_main_text">Your Selection!</string>
+    <string name="fragment_coffee_extras_main_text">Select your extras</string>
 </resources>

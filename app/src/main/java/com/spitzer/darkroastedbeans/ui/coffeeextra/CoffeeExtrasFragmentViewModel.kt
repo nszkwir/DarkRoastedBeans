@@ -1,15 +1,23 @@
 package com.spitzer.darkroastedbeans.ui.coffeeextra
 
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseViewModel
 import com.spitzer.darkroastedbeans.core.Event
+import com.spitzer.darkroastedbeans.core.ToolbarConfiguration
 import com.spitzer.darkroastedbeans.navigation.NavigationCommand
+import com.spitzer.darkroastedbeans.ui.coffeestyle.CoffeeStyleFragmentViewModel
 
 class CoffeeExtrasFragmentViewModel : BaseViewModel() {
-    override fun configureToolbar() = setToolbarConfiguration(
-        FRAGMENT_TITLE,
-        FRAGMENT_MAIN_TEXT,
-        IS_BACK_ALLOWED
-    )
+
+    override fun configureToolbar() {
+        _toolbarConfiguration.value = Event(
+            ToolbarConfiguration(
+                FRAGMENT_TITLE,
+                FRAGMENT_MAIN_TEXT,
+                IS_BACK_ALLOWED
+            )
+        )
+    }
 
     fun onHeaderClick(headerId: String) {
         // TODO handle extras without subselections
@@ -48,8 +56,8 @@ class CoffeeExtrasFragmentViewModel : BaseViewModel() {
     }
 
     companion object {
-        const val FRAGMENT_TITLE = "Brew with Lex"
-        const val FRAGMENT_MAIN_TEXT = "Select your extras"
+        const val FRAGMENT_TITLE = R.string.fragment_generic_title
+        const val FRAGMENT_MAIN_TEXT = R.string.fragment_coffee_extras_main_text
         const val IS_BACK_ALLOWED = true
     }
 }

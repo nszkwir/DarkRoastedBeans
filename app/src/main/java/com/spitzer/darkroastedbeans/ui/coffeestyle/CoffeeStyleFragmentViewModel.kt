@@ -1,16 +1,22 @@
 package com.spitzer.darkroastedbeans.ui.coffeestyle
 
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseViewModel
 import com.spitzer.darkroastedbeans.core.Event
+import com.spitzer.darkroastedbeans.core.ToolbarConfiguration
 import com.spitzer.darkroastedbeans.navigation.NavigationCommand
 
 class CoffeeStyleFragmentViewModel : BaseViewModel() {
 
-    override fun configureToolbar() = setToolbarConfiguration(
-        FRAGMENT_TITLE,
-        FRAGMENT_MAIN_TEXT,
-        IS_BACK_ALLOWED
-    )
+    override fun configureToolbar() {
+        _toolbarConfiguration.value = Event(
+            ToolbarConfiguration(
+                FRAGMENT_TITLE,
+                FRAGMENT_MAIN_TEXT,
+                IS_BACK_ALLOWED
+            )
+        )
+    }
 
     fun onHeaderClick(headerId: String) {
         if (headerId.isNotEmpty()) {
@@ -30,8 +36,8 @@ class CoffeeStyleFragmentViewModel : BaseViewModel() {
     }
 
     companion object {
-        const val FRAGMENT_TITLE = "Brew with Lex"
-        const val FRAGMENT_MAIN_TEXT = "Select your style"
+        const val FRAGMENT_TITLE = R.string.fragment_generic_title
+        const val FRAGMENT_MAIN_TEXT = R.string.fragment_coffee_style_main_text
         const val IS_BACK_ALLOWED = true
     }
 }
