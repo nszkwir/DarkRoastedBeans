@@ -11,4 +11,6 @@
     <color name="coffeeLightGreen">#AED7A0</color>
     <color name="coffeeStrongGreen">#9BC88B</color>
 
+    <color name="snackbarColor">#79A669</color>
+
 </resources>

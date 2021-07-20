@@ -1,8 +1,10 @@
 package com.spitzer.darkroastedbeans.ui.machinepairing
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.spitzer.darkroastedbeans.core.Event
+import com.spitzer.darkroastedbeans.core.ToolbarConfiguration
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepository
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.data.*
 import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel.Companion.COFFEE_MACHINE_ID
@@ -33,6 +35,8 @@ class MachinePairingFragmentViewModelTest {
 
     @Mock
     private lateinit var observer: Observer<Event<CoffeeMachineConfiguration>>
+    @Mock
+    private lateinit var toolbarObserver: Observer<Event<ToolbarConfiguration>>
 
     private lateinit var viewModel: MachinePairingFragmentViewModel
 
@@ -41,6 +45,20 @@ class MachinePairingFragmentViewModelTest {
         MockitoAnnotations.initMocks(this)
         viewModel =
             MachinePairingFragmentViewModel(TestCoroutineScope().coroutineContext, repository)
+    }
+
+    @Test
+    fun toolbarSetup() = runBlockingTest {
+        val title = "Dark Roasted Beans"
+        val mainText = "Tab the machine to start"
+        viewModel.setToolbarConfiguration(title, mainText, false)
+        assertNotNull(viewModel.toolbarConfiguration)
+        viewModel.toolbarConfiguration.observeForever(toolbarObserver)
+        assertTrue(viewModel.toolbarConfiguration.hasObservers())
+        verify(toolbarObserver).onChanged(viewModel.toolbarConfiguration.value!!)
+        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().title, title)
+        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().mainText, mainText)
+        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().showBackIcon, false)
     }
 
     @Test

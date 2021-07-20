@@ -3,4 +3,7 @@
     <string name="how_does_this_work"><a href="https://google.com">How does this work</a></string>
     <string name="main_fragment_title">Dark Roasted Beans</string>
     <string name="main_fragment_main_text">Tab the machine to start</string>
+    <string name="snackbar_could_not_fetch">Could not fetch data. Please retry.</string>
+    <string name="snackbar_network_error">A network error occurred. Please retry.</string>
+    <string name="snackbar_error">An error occurred. Please retry.</string>
 </resources>

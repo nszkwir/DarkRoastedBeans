@@ -39,7 +39,6 @@ class MachinePairingFragment : BaseFragment() {
     private fun defineObservables() {
         viewModel.coffeeMachineConfiguration.observe(viewLifecycleOwner, {
             it?.getContentIfNotHandled()?.let { coffeeMachineConfiguration ->
-                hideProgress()
                 viewModel.setCoffeeSelectionModel(CoffeeSelectionModel(coffeeMachineConfiguration))
                 viewModel.navigateForward()
             }
@@ -48,7 +47,6 @@ class MachinePairingFragment : BaseFragment() {
 
     private fun setupView() {
         binding.backgroundImage.setOnClickListener {
-            showProgress()
             viewModel.getCoffeeMachineConfiguration()
         }
     }

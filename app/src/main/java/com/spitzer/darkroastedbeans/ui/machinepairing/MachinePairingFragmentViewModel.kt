@@ -3,6 +3,7 @@ package com.spitzer.darkroastedbeans.ui.machinepairing
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
+import com.spitzer.darkroastedbeans.R
 import com.spitzer.darkroastedbeans.core.BaseViewModel
 import com.spitzer.darkroastedbeans.core.Event
 import com.spitzer.darkroastedbeans.navigation.NavigationCommand
@@ -37,23 +38,27 @@ class MachinePairingFragmentViewModel(
         _navigation.value = Event(NavigationCommand.To(action))
     }
     fun getCoffeeMachineConfiguration() {
+        _loading.value = Event(true)
         this.requestCoffeeMachineConfiguration()
     }
 
     private fun requestCoffeeMachineConfiguration() = launch {
         when (val result = repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)) {
+
             is ResultData.Success -> {
+                _loading.value = Event(false)
                 if (result.data != null) {
                     _coffeeMachineConfiguration.value = Event(result.data!!)
                 } else {
-                    // TODO no-data handling
+                    _snackbarError.value = Event(R.string.snackbar_could_not_fetch)
                 }
             }
             is ResultData.Error -> {
+                _loading.value = Event(false)
                 if (result.isNetworkError()) {
-                    // TODO NetworkError handling
+                    _snackbarError.value = Event(R.string.snackbar_network_error)
                 } else {
-                    // TODO Error handling
+                    _snackbarError.value = Event(R.string.snackbar_error)
                 }
             }
         }
