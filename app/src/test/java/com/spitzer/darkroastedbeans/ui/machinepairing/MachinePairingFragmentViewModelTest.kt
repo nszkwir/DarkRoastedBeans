@@ -1,10 +1,8 @@
 package com.spitzer.darkroastedbeans.ui.machinepairing
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.spitzer.darkroastedbeans.core.Event
-import com.spitzer.darkroastedbeans.core.ToolbarConfiguration
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.CoffeeMachineRepository
 import com.spitzer.darkroastedbeans.repositories.coffeemachine.data.*
 import com.spitzer.darkroastedbeans.ui.machinepairing.MachinePairingFragmentViewModel.Companion.COFFEE_MACHINE_ID
@@ -35,8 +33,6 @@ class MachinePairingFragmentViewModelTest {
 
     @Mock
     private lateinit var observer: Observer<Event<CoffeeMachineConfiguration>>
-    @Mock
-    private lateinit var toolbarObserver: Observer<Event<ToolbarConfiguration>>
 
     private lateinit var viewModel: MachinePairingFragmentViewModel
 
@@ -48,39 +44,35 @@ class MachinePairingFragmentViewModelTest {
     }
 
     @Test
-    fun toolbarSetup() = runBlockingTest {
-        val title = "Dark Roasted Beans"
-        val mainText = "Tab the machine to start"
-        viewModel.setToolbarConfiguration(title, mainText, false)
-        assertNotNull(viewModel.toolbarConfiguration)
-        viewModel.toolbarConfiguration.observeForever(toolbarObserver)
-        assertTrue(viewModel.toolbarConfiguration.hasObservers())
-        verify(toolbarObserver).onChanged(viewModel.toolbarConfiguration.value!!)
-        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().title, title)
-        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().mainText, mainText)
-        assertEquals(viewModel.toolbarConfiguration.value!!.peekContent().showBackIcon, false)
-    }
+    fun `successful fetch of Coffee Machine Configuration but getting null data`() {
 
-    @Test
-    fun gettingSuccess_butNoData() = runBlockingTest {
-        `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)).thenReturn(null)
-        viewModel.getCoffeeMachineConfiguration()
-        assertNotNull(viewModel.coffeeMachineConfiguration)
+        runBlockingTest {
+            `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)).thenReturn(null)
+            viewModel.getCoffeeMachineConfiguration()
+            verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
+        }
+
         viewModel.coffeeMachineConfiguration.observeForever(observer)
+
         assertTrue(viewModel.coffeeMachineConfiguration.hasObservers())
-        verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
+        assertNotNull(viewModel.coffeeMachineConfiguration)
+
         verifyNoInteractions(observer)
     }
 
     @Test
-    fun gettingSuccess_emptyModel() = runBlockingTest {
-        `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
-            .thenReturn(ResultData.Success(CoffeeMachineConfiguration("test")))
-        viewModel.getCoffeeMachineConfiguration()
-        assertNotNull(viewModel.coffeeMachineConfiguration)
+    fun `successful fetch of Coffee Machine Configuration but getting empty configuration`() {
+        runBlockingTest {
+            `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
+                .thenReturn(ResultData.Success(CoffeeMachineConfiguration("test")))
+            viewModel.getCoffeeMachineConfiguration()
+            verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
+        }
+
         viewModel.coffeeMachineConfiguration.observeForever(observer)
+
+        assertNotNull(viewModel.coffeeMachineConfiguration)
         assertTrue(viewModel.coffeeMachineConfiguration.hasObservers())
-        verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
         assertEquals(viewModel.coffeeMachineConfiguration.value!!.peekContent().id, "test")
         assertEquals(
             viewModel.coffeeMachineConfiguration.value!!.peekContent().types,
@@ -98,7 +90,7 @@ class MachinePairingFragmentViewModelTest {
     }
 
     @Test
-    fun gettingSuccess_notEmptyModel() = runBlockingTest {
+    fun `successful fetch of Coffee Machine Configuration`() {
         val types = arrayListOf<CoffeeType>(
             CoffeeType("1", "1"),
             CoffeeType("2", "2"),
@@ -112,19 +104,23 @@ class MachinePairingFragmentViewModelTest {
             CoffeeExtra("2", "2"),
         )
 
-        `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
-            .thenReturn(
-                ResultData.Success(
-                    CoffeeMachineConfiguration(
-                        "test", types, sizes, extras
+        runBlockingTest {
+            `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
+                .thenReturn(
+                    ResultData.Success(
+                        CoffeeMachineConfiguration(
+                            "test", types, sizes, extras
+                        )
                     )
                 )
-            )
-        viewModel.getCoffeeMachineConfiguration()
-        assertNotNull(viewModel.coffeeMachineConfiguration)
+            viewModel.getCoffeeMachineConfiguration()
+            verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
+        }
+
         viewModel.coffeeMachineConfiguration.observeForever(observer)
+
+        assertNotNull(viewModel.coffeeMachineConfiguration)
         assertTrue(viewModel.coffeeMachineConfiguration.hasObservers())
-        verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
         assertEquals(viewModel.coffeeMachineConfiguration.value!!.peekContent().id, "test")
         assertEquals(viewModel.coffeeMachineConfiguration.value!!.peekContent().types!!.size, 2)
         assertEquals(viewModel.coffeeMachineConfiguration.value!!.peekContent().sizes!!.size, 2)
@@ -137,14 +133,18 @@ class MachinePairingFragmentViewModelTest {
     }
 
     @Test
-    fun gettingError() = runBlockingTest {
-        `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
-            .thenReturn(ResultData.Error(Exception("something went wrong")))
-        viewModel.getCoffeeMachineConfiguration()
-        assertNotNull(viewModel.coffeeMachineConfiguration)
+    fun `getting Error while fetching Coffee Machine Configuration`() {
+        runBlockingTest {
+            `when`(repository.getCoffeeMachineConfiguration(COFFEE_MACHINE_ID))
+                .thenReturn(ResultData.Error(Exception("something went wrong")))
+            viewModel.getCoffeeMachineConfiguration()
+            verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
+        }
+
         viewModel.coffeeMachineConfiguration.observeForever(observer)
+
+        assertNotNull(viewModel.coffeeMachineConfiguration)
         assertTrue(viewModel.coffeeMachineConfiguration.hasObservers())
-        verify(repository).getCoffeeMachineConfiguration(COFFEE_MACHINE_ID)
         verifyNoInteractions(observer)
     }
 }
